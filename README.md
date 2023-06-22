@@ -29,7 +29,7 @@ This project is licensed under the MIT license.
 ## Usage
 
 The applications can be accessed at: https://github.com/alexmin94/Shape-Maker-Challenge
-The video tutorial can be found at: 
+The video tutorial can be found at: https://drive.google.com/file/d/13qz2QEMiNHKwMJKeE3rBz_PxCEc7eSEc/view
 
 ## Questions
 
