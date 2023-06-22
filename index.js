@@ -3,9 +3,14 @@ const fs = require("fs")
 const {Circle,Square,Triangle} = require("./lib/shapes")
 const SVG = require ("./lib/svg")
 
+function writeToFile(fileName, answers){
+        
+    fs.writeFile(fileName,answers,(err)=> {
+     err? console.log(err) : console.log ("generated logo.svg");
+    });
+};
 
-
-function promtUser(){
+function promptUser(){
     inquirer.prompt([
 //create inquirer questions
 {
@@ -31,9 +36,34 @@ function promtUser(){
     choices: ["Circle", "Square", "Triangle"],
 },
     ]).then((answers)=>{
+        let logo;
+             switch(answers.shape){
+                case "Circle": 
+                 logo = new Circle()
+                 break;
+
+                 case "Square": 
+                 logo = new Square()
+                 break;
+                 
+                 case "Triangle": 
+                 logo = new Triangle()
+                 break;
+             }
+             logo.setColor(answers.textbackgroundColor)
+             const myLogo = new SVG()
+             myLogo.setShape(logo)
+             myLogo.setText(answers.text,answers.textcolor)
+              if (answers.text.length > 3) {
+                   console.log("Please no more than 3 characters");
+                   promptUser();
+               } else {
+                   writeToFile("logo.svg", myLogo.render());
+               }
 //use a switch case for the differnt shapes
 //set the logo color and the text color
     })
     //use the right to file function to render the logo
     //use chat gpt to research fs.write file
 }
+promptUser()
